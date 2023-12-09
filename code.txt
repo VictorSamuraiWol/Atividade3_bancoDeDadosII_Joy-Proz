@@ -1,0 +1,24 @@
+CREATE TABLE produto (
+  id_produto SERIAL PRIMARY KEY,
+  nome VARCHAR(30),
+  preço FLOAT,
+  qnt_produto INT,
+  comprou_dia INT
+)
+
+INSERT INTO produto (nome, preço, qnt_produto, comprou_dia) VALUES
+('laranja', 2.50, 100, 1),
+('uva', 1.99, 300, 10),
+('abacate', 3.2, 30, 5),
+('abacaxi', 5, 30, 7),
+('melancia', 3.22, 15, 15);
+
+CREATE PROCEDURE verQuantidadeDiaria ()
+LANGUAGE SQL
+BEGIN ATOMIC
+SELECT nome, qnt_produto, comprou_dia FROM produto;
+END;
+
+CALL verquantidadediaria();
+
+SELECT nome, qnt_produto, comprou_dia FROM produto;
